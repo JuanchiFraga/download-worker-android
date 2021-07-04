@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="empty" />
+
+    <plurals name="remaining_seconds">
+        <item quantity="one">%1$d sec left</item>
+        <item quantity="other">%1$d secs left</item>
+    </plurals>
+
+    <plurals name="remaining_minutes">
+        <item quantity="one">%1$d min left</item>
+        <item quantity="other">%1$d mins left</item>
+    </plurals>
+
+    <plurals name="remaining_hours">
+        <item quantity="one">%1$d hr left</item>
+        <item quantity="other">%1$d hrs left</item>
+    </plurals>
+
+    <plurals name="remaining_days">
+        <item quantity="one">%1$d day left</item>
+        <item quantity="other">%1$d days left</item>
+    </plurals>
+
+    <plurals name="remaining_month">
+        <item quantity="one">%1$d month</item>
+        <item quantity="other">%1$d months</item>
+    </plurals>
+
+    <plurals name="remaining_years">
+        <item quantity="one">%1$d year left</item>
+        <item quantity="other">%1$d years left</item>
+    </plurals>
+
+    <string name="notification_pending">Pending</string>
+    <string name="notification_complete">Complete</string>
+    <string name="notification_error">Canceled</string>
+    <string name="notification_connection_error_message">Its seems there is no internet</string>
+    <string name="notification_generic_error_message">Oops, something went wrong</string>
+    <string name="notification_cancel">Cancel</string>
+
+    <string name="size_bytes">%1$.1f/%2$.1f bytes</string>
+    <string name="size_kilo_bytes">%1$.1f/%2$.1f KB</string>
+    <string name="size_mega_bytes">%1$.1f/%2$.1f MB</string>
+    <string name="size_giga_bytes">%1$.1f/%2$.1f GB</string>
+    <string name="size_tera_bytes">%1$.1f/%2$.1f TB</string>
+
+</resources>
