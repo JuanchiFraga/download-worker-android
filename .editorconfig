@@ -1,0 +1,6 @@
+[*.{kt,kts}]
+
+# overridden ktlint rules
+insert_final_newline = false
+max_line_length = 150
+disabled_rules = import-ordering
