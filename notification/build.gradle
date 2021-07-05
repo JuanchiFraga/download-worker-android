@@ -6,6 +6,7 @@ apply plugin: 'kotlin-parcelize'
 android {
 
     compileSdkVersion maxApiLevel.toInteger()
+    buildToolsVersion "30.0.3"
     ndkVersion ndkVersion
 
     defaultConfig {
