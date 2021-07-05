@@ -1,0 +1,17 @@
+name: Ktlint
+
+on:
+  push:
+    branches: [ develop ]
+
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  checking:
+    runs-on:  ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      - name: Run ktlint
+        run: ./gradlew ktlintCheck
