@@ -1,16 +1,8 @@
-# downloadd-notification-android
-Useful library to download files asynchronously
+# Description
+Useful library to download files asynchronously watching the progress through push notification
 
 ## Status
-
-- Branch: **develop**
-
-  - [![API](https://img.shields.io/badge/API-%2B19-brightgreen)](https://android-arsenal.com/api?level=19#l19)
-  - [![Codecov](https://codecov.io/gh/rembertime/download-worker-android/branch/develop/graph/badge.svg?token=7KHDY9ATMG)](https://codecov.io/gh/rembertime/location-android)
-  - ![Build status](https://github.com/rembertime/download-worker-android/workflows/Build%20status/badge.svg)
-  - ![Detekt](https://github.com/rembertime/download-worker-android/workflows/Detekt/badge.svg)
-  - ![Ktlint](https://github.com/rembertime/download-worker-android/workflows/Ktlint/badge.svg)
-
+ [![API](https://img.shields.io/badge/API-%2B19-brightgreen)](https://android-arsenal.com/api?level=19#l19) [![Codecov](https://codecov.io/gh/rembertime/download-worker-android/branch/develop/graph/badge.svg?token=Q1LQS6TC1E)](https://codecov.io/gh/rembertime/download-worker-android) ![Build status](https://github.com/rembertime/download-worker-android/workflows/Build%20status/badge.svg) ![Detekt](https://github.com/rembertime/download-worker-android/workflows/Detekt/badge.svg) ![Ktlint](https://github.com/rembertime/download-worker-android/workflows/Ktlint/badge.svg)
 ## Developer
 - Juan Manuel Fraga / juanchi.fragaa@gmail.com
 
