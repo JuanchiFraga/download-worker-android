@@ -2,66 +2,93 @@ package com.rembertime.notification.domain.notification
 
 import android.content.Context
 import android.net.Uri
-import androidx.core.app.NotificationCompat
-import androidx.work.WorkManager
-import com.rembertime.notification.R
-import com.rembertime.notification.domain.model.RemainingProgressModel
+import android.os.Build
+import android.util.Log
+import androidx.core.app.NotificationCompat.FLAG_ONLY_ALERT_ONCE
+import androidx.test.core.app.ApplicationProvider
+import androidx.work.Configuration
+import androidx.work.testing.SynchronousExecutor
+import androidx.work.testing.WorkManagerTestInitHelper
+import com.nhaarman.mockitokotlin2.mock
 import com.rembertime.notification.domain.model.WorkNotificationModel
 import com.rembertime.notification.util.extensions.createOpenSharePendingIntent
+import junit.framework.Assert.assertEquals
+import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 import java.util.UUID
 
-internal class NotificationFactoryTest(private val applicationContext: Context) {
+@Config(sdk = [Build.VERSION_CODES.M])
+@RunWith(RobolectricTestRunner::class)
+internal class NotificationFactoryTest {
 
-    fun createPendingNotification(model: WorkNotificationModel, workId: UUID): NotificationCompat.Builder {
-        return NotificationCompat.Builder(applicationContext, model.channelId).apply {
-            setContentTitle(model.notificationTitle)
-            setContentText(model.notificationContent)
-            setSmallIcon(model.applicationIcon)
-            model.notificationIcon?.let { setLargeIcon(it) }
-            setOnlyAlertOnce(true)
-            setOngoing(true)
-            setShowWhen(false)
-            setChannelId(model.channelId)
-            setProgress(TOTAL_PROGRESS, 0, true)
-            addAction(
-                android.R.drawable.ic_delete,
-                applicationContext.getString(R.string.notification_cancel).uppercase(),
-                WorkManager.getInstance(applicationContext).createCancelPendingIntent(workId)
-            )
-        }
+    private lateinit var factory: NotificationFactory
+    private lateinit var model: WorkNotificationModel
+    private lateinit var context: Context
+
+    @Before
+    fun setUp() {
+        context = ApplicationProvider.getApplicationContext()
+        factory = NotificationFactory(context)
+        val config = Configuration.Builder()
+            .setMinimumLoggingLevel(Log.DEBUG)
+            .setExecutor(SynchronousExecutor())
+            .build()
+        WorkManagerTestInitHelper.initializeTestWorkManager(context, config)
+        model = createWorkNotificationModel()
     }
 
-    fun createRunningNotification(model: WorkNotificationModel, workId: UUID, remainingModel: RemainingProgressModel): NotificationCompat.Builder {
-        return createPendingNotification(model, workId).apply {
-            setContentText(remainingModel.description)
-            setProgress(TOTAL_PROGRESS, remainingModel.progress, false)
-        }
+    @Test
+    fun givenCreatePendingNotificationThenRetrieveNotificationWithCancelAction() {
+        val uuid: UUID = mock()
+
+        val notificationBuilder = factory.createPendingNotification(model, uuid)
+
+        assertEquals(notificationBuilder.build().actions[0].title, "CANCEL")
     }
 
-    fun createSuccessNotification(model: WorkNotificationModel, file: Uri): NotificationCompat.Builder {
-        return NotificationCompat.Builder(applicationContext, model.channelId).apply {
-            setContentTitle(model.fileName)
-            setContentText(applicationContext.getString(R.string.notification_complete))
-            setContentIntent(applicationContext.createOpenSharePendingIntent(model.fileName, file))
-            setSmallIcon(model.applicationIcon)
-            setChannelId(model.channelId)
-            model.notificationIcon?.let { setLargeIcon(it) }
-            setOnlyAlertOnce(true)
-        }
+    @Test(expected = NoSuchMethodError::class)
+    fun givenCreateNotificationOnApiLessThanQThenRetrieveNotificationWithoutChannelId() {
+        val uuid: UUID = mock()
+
+        val notificationBuilder = factory.createPendingNotification(model, uuid)
+
+        notificationBuilder.build().channelId
     }
 
-    fun createErrorNotification(model: WorkNotificationModel, errorMessage: String): NotificationCompat.Builder {
-        return NotificationCompat.Builder(applicationContext, model.channelId).apply {
-            setContentTitle(applicationContext.getString(R.string.notification_error))
-            setContentText(errorMessage)
-            setChannelId(model.channelId)
-            setSmallIcon(model.applicationIcon)
-            model.notificationIcon?.let { setLargeIcon(it) }
-            setOnlyAlertOnce(true)
-        }
+    @Test
+    fun givenCreateSuccessNotificationThenRetrieveOpenShareIntentNotification() {
+        val uri: Uri = mock()
+        val notificationBuilder = factory.createSuccessNotification(model, uri)
+
+        assert(notificationBuilder.build().contentIntent == context.createOpenSharePendingIntent(model.fileName, uri))
     }
 
-    companion object {
-        private const val TOTAL_PROGRESS = 100
+    @Test
+    fun givenCreateSuccessNotificationThenRetrieveOnlyAlertOnceNotification() {
+        val uri: Uri = mock()
+        val notificationBuilder = factory.createSuccessNotification(model, uri)
+
+        assert(notificationBuilder.build().flags == FLAG_ONLY_ALERT_ONCE)
+    }
+
+    @Test
+    fun givenCreateErrorNotificationThenRetrieveOnlyAlertOnceNotification() {
+        val notificationBuilder = factory.createErrorNotification(model, "error")
+
+        assert(notificationBuilder.build().flags == FLAG_ONLY_ALERT_ONCE)
+    }
+
+    private fun createWorkNotificationModel() = WorkNotificationModel().apply {
+        filePath = "http://www.domain.com/book.pdf"
+        fileName = "book.pdf"
+        channelId = "channelId"
+        channelName = "Download"
+        notificationId = 0
+        notificationTitle = "book"
+        notificationContent = "content"
+        applicationIcon = 1
     }
 }

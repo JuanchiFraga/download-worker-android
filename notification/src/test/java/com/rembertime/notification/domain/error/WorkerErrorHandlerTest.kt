@@ -11,7 +11,7 @@ import java.io.IOException
 import java.lang.RuntimeException
 import kotlin.coroutines.cancellation.CancellationException
 
-class WorkerErrorHandlerTest {
+internal class WorkerErrorHandlerTest {
 
     private lateinit var workerErrorHandler: WorkerErrorHandler
     private lateinit var stringProvider: StringProvider

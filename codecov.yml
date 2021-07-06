@@ -1,0 +1,3 @@
+ignore:
+  - "app/*"
+  - "notification/src/main/java/com/rembertime/notification/util/*"
