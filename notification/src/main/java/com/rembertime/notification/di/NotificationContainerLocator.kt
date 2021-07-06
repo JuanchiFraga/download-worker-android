@@ -13,7 +13,7 @@ internal object NotificationContainerLocator {
      */
     fun locateComponent(context: Context): NotificationContainer {
         if (notificationContainer == null) {
-            setComponent(NotificationContainer(context.applicationContext))
+            setComponent(NotificationContainerDefault(context.applicationContext))
         }
         return notificationContainer!!
     }

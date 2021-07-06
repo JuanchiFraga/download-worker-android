@@ -51,9 +51,11 @@ dependencies {
 
     testImplementation "junit:junit:$junitVersion"
     testImplementation "org.mockito:mockito-inline:$mockitoVersion"
+    testImplementation "org.mockito:mockito-android:$mockitoAndroidVersion"
     testImplementation "androidx.test:core:$testCoreVersion"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinTestVersion"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKVersion"
     testImplementation "org.robolectric:robolectric:$robolectricVersion"
+    testImplementation "androidx.work:work-testing:$workerVersion"
 
 }

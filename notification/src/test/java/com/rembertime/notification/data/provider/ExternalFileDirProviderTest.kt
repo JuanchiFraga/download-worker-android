@@ -15,7 +15,7 @@ import org.robolectric.shadows.ShadowEnvironment
 
 @Config(sdk = [Build.VERSION_CODES.M], shadows = [ShadowEnvironment::class])
 @RunWith(RobolectricTestRunner::class)
-class ExternalFileDirProviderTest {
+internal class ExternalFileDirProviderTest {
 
     private lateinit var externalFileDirProvider: ExternalFileDirProvider
 

@@ -4,7 +4,7 @@ import com.rembertime.notification.domain.mapper.estimator.ProgressEstimatorProv
 import org.junit.Before
 import org.junit.Test
 
-class ProgressEstimatorProviderTest {
+internal class ProgressEstimatorProviderTest {
 
     private lateinit var progressEstimatorProvider: ProgressEstimatorProvider
 

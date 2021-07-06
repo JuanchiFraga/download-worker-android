@@ -4,7 +4,7 @@ import kotlinx.coroutines.Dispatchers
 import org.junit.Before
 import org.junit.Test
 
-class DispatcherProviderTest {
+internal class DispatcherProviderTest {
 
     private lateinit var dispatcherProvider: DispatcherProvider
 
