@@ -36,4 +36,4 @@ jobs:
           path: notification/build/reports/jacoco/debug
 
       - name: Upload Test Report
-        run:  bash <(curl -s https://codecov.io/bash) -f "download-worker-android/build/reports/coverage/debug/report.xml"
+        run:  bash <(curl -s https://codecov.io/bash) -f "notification/build/reports/jacoco/debug/jacoco.xml"
