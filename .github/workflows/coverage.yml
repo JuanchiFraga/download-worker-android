@@ -3,20 +3,24 @@ name: Coverage
 on:
   push:
     branches: [ develop ]
+
   pull_request:
     branches: [ develop ]
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+
       - name: Unit Test with Android Emulator Runner
         uses: ReactiveCircus/android-emulator-runner@v2.14.3
         with:
           api-level: 29
           script: ./gradlew connectedCheck
+
+       run: ./gradlew testDebugUnitTest
 
       - name: generate report
         uses: actions/upload-artifact@v2
