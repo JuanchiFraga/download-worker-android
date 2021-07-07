@@ -20,7 +20,8 @@ jobs:
           api-level: 29
           script: ./gradlew connectedCheck
 
-#       run: ./gradlew testDebugUnitTest
+      - name: Run Jacoco
+        run: ./gradlew testDebugUnitTest
 
       - name: generate report
         uses: actions/upload-artifact@v2
