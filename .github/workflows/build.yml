@@ -1,4 +1,4 @@
-name: Build status
+name: Build
 
 on:
   push:
@@ -8,30 +8,12 @@ on:
     branches: [ develop ]
 
 jobs:
-  building:
+  checking:
     runs-on:  ubuntu-latest
-    if: ${{ !contains(github.event.head_commit.message, 'ci skip') }}
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
-      - name: Cache Gradle Caches
-        uses: actions/cache@v1
-        with:
-          path: ~/.gradle/caches/
-          key: cache-gradle-cache
-      - name: Cache (NDK)
-        uses: actions/cache@v2
-        with:
-          path: ${ANDROID_HOME}/ndk/21.0.6113669
-          key: ndk-cache
-      - name: Install NDK
-        run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install 'ndk;21.0.6113669'
-      - name: Cache Gradle Wrapper
-        uses: actions/cache@v1
-        with:
-          path: ~/.gradle/wrapper/
-          key: cache-gradle-wrapper
-      - name: Run Gradle build
-        run: ./gradlew build --continue
-      - name: Stop Gradle
+      - name: Clean Build
         run: ./gradlew --stop
+      - name: Run Build
+        run: ./gradlew build --no-daemon

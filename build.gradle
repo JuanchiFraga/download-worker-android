@@ -33,3 +33,20 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*']
+}
+
+junitJacoco {
+    ignoreProjects = []
+    excludes = [
+            'jdk.internal.*',
+            '**/test/*',
+            '**/app/*',
+            '**/util/*'
+    ]
+    includeNoLocationClasses = true
+    includeInstrumentationCoverageInMergedReport = true
+}
