@@ -37,6 +37,7 @@ task clean(type: Delete) {
 junitJacoco {
     ignoreProjects = []
     excludes = [
+            'jdk.internal.*',
             '**/test/*',
             '**/app/*',
             '**/util/*'
