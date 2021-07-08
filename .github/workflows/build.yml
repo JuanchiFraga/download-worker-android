@@ -16,4 +16,4 @@ jobs:
       - name: Clean Build
         run: ./gradlew --stop
       - name: Run Build
-        run: ./gradlew build
+        run: ./gradlew build --no-daemon
