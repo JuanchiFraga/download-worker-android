@@ -8,32 +8,13 @@ on:
     branches: [ develop ]
 
 jobs:
-  build:
-    runs-on: macos-latest
-
+  checking:
+    runs-on:  ubuntu-latest
+    if: ${{ !contains(github.event.head_commit.message, 'ci skip') }}
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Unit Test with Android Emulator Runner
-        uses: ReactiveCircus/android-emulator-runner@v2.14.3
-        with:
-          api-level: 23
-          script: ./gradlew connectedCheck
-
-      - name: Run Jacoco
-        run: ./gradlew testDebugUnitTest
-
-      - name: generate report
-        uses: actions/upload-artifact@v2
-        with:
-          name: report
-          path: notification/build/reports/jacoco/debug
-
-      - name: Download Test Reports Folder
-        uses: actions/download-artifact@v2
-        with:
-          name: report
-          path: notification/build/reports/jacoco/debug
-
-      - name: Upload Test Report
-        run:  bash <(curl -s https://codecov.io/bash) -f "notification/build/reports/jacoco/debug/jacoco.xml"
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      - name: Run jacoco
+        run: ./gradlew jacocoTestReportDebug
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1

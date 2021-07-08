@@ -14,9 +14,11 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detektVersion"
         classpath "org.jlleitschuh.gradle:ktlint-gradle:$ktlintVersion"
-        classpath "org.jacoco:org.jacoco.core:$jacocoVersion"
+        classpath "com.vanniktech:gradle-android-junit-jacoco-plugin:0.16.0"
     }
 }
+
+apply plugin: 'com.vanniktech.android.junit.jacoco'
 
 allprojects {
     repositories {
@@ -30,4 +32,15 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+junitJacoco {
+    ignoreProjects = []
+    excludes = [
+            '**/test/*',
+            '**/app/*',
+            '**/util/*'
+    ]
+    includeNoLocationClasses = true
+    includeInstrumentationCoverageInMergedReport = true
 }
