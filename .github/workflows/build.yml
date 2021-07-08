@@ -13,5 +13,7 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
+      - name: Clean Build
+        run: ./gradlew --stop
       - name: Run Build
         run: ./gradlew build
