@@ -40,7 +40,6 @@ tasks.withType(Test) {
 }
 
 junitJacoco {
-    jacocoVersion = '0.8.4'
     ignoreProjects = []
     includeInstrumentationCoverageInMergedReport = true
     tasks.withType(Test) {
