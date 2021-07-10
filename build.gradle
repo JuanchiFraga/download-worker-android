@@ -14,7 +14,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detektVersion"
         classpath "org.jlleitschuh.gradle:ktlint-gradle:$ktlintVersion"
-        classpath "com.vanniktech:gradle-android-junit-jacoco-plugin:0.16.0"
+        classpath "com.vanniktech:gradle-android-junit-jacoco-plugin:$jacocoPluginVersion"
     }
 }
 
@@ -41,12 +41,14 @@ tasks.withType(Test) {
 
 junitJacoco {
     ignoreProjects = []
-    excludes = [
-            'jdk.internal.*',
-            '**/test/*',
-            '**/app/*',
-            '**/util/*'
-    ]
-    includeNoLocationClasses = true
     includeInstrumentationCoverageInMergedReport = true
+    tasks.withType(Test) {
+        jacoco.includeNoLocationClasses = true
+        jacoco.excludes = [
+                'jdk.internal.*',
+                '**/test/*',
+                '**/app/*',
+                '**/util/*'
+        ]
+    }
 }
