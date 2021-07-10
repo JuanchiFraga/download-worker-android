@@ -1,8 +1,56 @@
-# Description
-Useful library to download files asynchronously watching the progress through push notification
+# Rembertime download worker
 
 ## Status
- [![API](https://img.shields.io/badge/API-%2B19-brightgreen)](https://android-arsenal.com/api?level=19#l19) [![Codecov](https://codecov.io/gh/rembertime/download-worker-android/branch/develop/graph/badge.svg?token=Q1LQS6TC1E)](https://codecov.io/gh/rembertime/download-worker-android) ![Build status](https://github.com/rembertime/download-worker-android/workflows/Build%20status/badge.svg) ![Detekt](https://github.com/rembertime/download-worker-android/workflows/Detekt/badge.svg) ![Ktlint](https://github.com/rembertime/download-worker-android/workflows/Ktlint/badge.svg)
+ [![](https://jitpack.io/v/rembertime/download-worker-android.svg)](https://jitpack.io/#rembertime/download-worker-android) [![API](https://img.shields.io/badge/API-%2B19-brightgreen)](https://android-arsenal.com/api?level=19#l19) [![Codecov](https://codecov.io/gh/rembertime/download-worker-android/branch/develop/graph/badge.svg?token=Q1LQS6TC1E)](https://codecov.io/gh/rembertime/download-worker-android) ![Build status](https://github.com/rembertime/download-worker-android/workflows/Build%20status/badge.svg) ![Detekt](https://github.com/rembertime/download-worker-android/workflows/Detekt/badge.svg) ![Ktlint](https://github.com/rembertime/download-worker-android/workflows/Ktlint/badge.svg)
+
+# Description
+Useful library to download files asynchronously watching the progress through push notification.
+
+## JitPack
+1. Add the JitPack repository to your build file
+```
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+2. Add the dependency
+```
+dependencies {
+	implementation 'com.github.rembertime:download-worker-android:1.0.0'
+}
+```
+
+## Usage
+All you have to do is call DownloadFileNotificationWorker and enqueue the file to download:
+```
+DownloadFileNotificationWorker.enqueue(context, NotificationModel(
+    filePath = "https://speed.hetzner.de/1GB.bin"
+))
+```
+
+You can customize your push notification by setting the following properties
+```
+DownloadFileNotificationWorker.enqueue(context, NotificationModel(
+    filePath = "https://speed.hetzner.de/1GB.bin", // file to download
+    applicationIcon = R.drawable.ic_app, // usually the app icon (image (1))
+    customFileName = "testFile.bin", // Custom name file
+    customNotificationTitle = "Test notification", //  Custom title, otherwise we set file name as title (image (2))
+    notificationIcon = R.drawable.ic_notification, // Notification icon (image (3))
+    channelName: String = "Downloads", // Channel name. See [documentation](https://developer.android.com/training/notify-user/channels)
+    channelId: String = "default_rembertime_channel" // Channel id. See [documentation](https://developer.android.com/training/notify-user/channels)
+))
+```
+
+## Contribute
+New features, bug fixes and improvements in the translation are welcome! For questions and suggestions use the [issues](https://github.com/rembertime/download-worker-android/issues).
+
+Before submit your PR, run the gradle checks.
+```
+./gradlew check
+```
+
 ## Developer
 - Juan Manuel Fraga / juanchi.fragaa@gmail.com
 
@@ -31,7 +79,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
-
-
-
-
