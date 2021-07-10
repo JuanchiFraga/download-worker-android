@@ -34,10 +34,10 @@ You can customize your push notification by setting the following properties
 ```
 DownloadFileNotificationWorker.enqueue(context, NotificationModel(
     filePath = "https://speed.hetzner.de/1GB.bin", // file to download
-    applicationIcon = R.drawable.ic_app, // usually the app icon (image (1))
-    customFileName = "testFile.bin", // Custom name file (image(2))
-    customNotificationTitle = "Test notification", //  Custom title, otherwise we set file name as title (image (2))
-    notificationIcon = R.drawable.ic_notification, // Notification icon (image (3))
+    applicationIcon = R.drawable.ic_app, // usually the app icon (1)
+    customFileName = "testFile.bin", // Custom name file (2)
+    customNotificationTitle = "Test notification", //  Custom title, otherwise we set file name as title (2)
+    notificationIcon = R.drawable.ic_notification, // Notification icon (3)
     channelName: String = "Downloads", // Channel name for api 26 and above
     channelId: String = "default_rembertime_channel" // Channel id for api 26 and above
 ))
@@ -59,7 +59,7 @@ Before submit your PR, run the gradle checks.
 ./gradlew check
 ```
 
-## Developer
+## Author
 - Juan Manuel Fraga / juanchi.fragaa@gmail.com
 
 ## License
