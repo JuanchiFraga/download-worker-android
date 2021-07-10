@@ -41,12 +41,14 @@ tasks.withType(Test) {
 
 junitJacoco {
     ignoreProjects = []
-    excludes = [
-            'jdk.internal.*',
-            '**/test/*',
-            '**/app/*',
-            '**/util/*'
-    ]
-    includeNoLocationClasses = true
     includeInstrumentationCoverageInMergedReport = true
+    tasks.withType(Test) {
+        jacoco.includeNoLocationClasses = true
+        jacoco.excludes = [
+                'jdk.internal.*',
+                '**/test/*',
+                '**/app/*',
+                '**/util/*'
+        ]
+    }
 }
