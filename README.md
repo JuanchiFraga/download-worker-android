@@ -46,7 +46,7 @@ for more information about the channels see the [documentation](https://develope
 
 ![Push notification sample](https://user-images.githubusercontent.com/29152510/125177205-36834b80-e1b0-11eb-96f3-093ad4fb7275.jpg)
 
-
+## Language
 By default all the wordings are in english but you can customize them! you just override defaults with your custom `string.xml`
 you can see the google [documentation](https://developer.android.com/training/basics/supporting-devices/languages)
 or just check the spanish example on `app` module.
