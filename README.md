@@ -18,7 +18,7 @@ allprojects {
 2. Add the dependency
 ```
 dependencies {
-	implementation 'com.github.rembertime:download-worker-android:1.0.0'
+    implementation 'com.github.rembertime:download-worker-android:1.0.0'
 }
 ```
 
@@ -38,10 +38,11 @@ DownloadFileNotificationWorker.enqueue(context, NotificationModel(
     customFileName = "testFile.bin", // Custom name file
     customNotificationTitle = "Test notification", //  Custom title, otherwise we set file name as title (image (2))
     notificationIcon = R.drawable.ic_notification, // Notification icon (image (3))
-    channelName: String = "Downloads", // Channel name. See [documentation](https://developer.android.com/training/notify-user/channels)
-    channelId: String = "default_rembertime_channel" // Channel id. See [documentation](https://developer.android.com/training/notify-user/channels)
+    channelName: String = "Downloads", // Channel name for api 26 and above
+    channelId: String = "default_rembertime_channel" // Channel id for api 26 and above
 ))
 ```
+for more information about the channels see the [documentation](https://developer.android.com/training/notify-user/channels)
 
 ## Contribute
 New features, bug fixes and improvements in the translation are welcome! For questions and suggestions use the [issues](https://github.com/rembertime/download-worker-android/issues).
