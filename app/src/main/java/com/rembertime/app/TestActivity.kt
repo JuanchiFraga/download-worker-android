@@ -27,7 +27,8 @@ class TestActivity : AppCompatActivity() {
         DownloadFileNotificationWorker.enqueue(this, NotificationModel(
             filePath = filePath,
             customFileName = customName,
-            applicationIcon = R.drawable.ic_bell
+            applicationIcon = R.drawable.ic_bell,
+            notificationIcon = R.drawable.ic_folder
         ))
     }
 

@@ -1,0 +1,41 @@
+<resources>
+
+    <string name="app_name">Notificación de prueba</string>
+
+    <plurals name="remaining_seconds">
+        <item quantity="one">Queda %1$d segundo</item>
+        <item quantity="other">Quedan %1$d segundos</item>
+    </plurals>
+
+    <plurals name="remaining_minutes">
+        <item quantity="one">Queda %1$d minuto</item>
+        <item quantity="other">Quedan %1$d minutos</item>
+    </plurals>
+
+    <plurals name="remaining_hours">
+        <item quantity="one">Queda %1$d hora</item>
+        <item quantity="other">Quedan %1$d horas</item>
+    </plurals>
+
+    <plurals name="remaining_days">
+        <item quantity="one">Queda %1$d día</item>
+        <item quantity="other">Quedan %1$d días</item>
+    </plurals>
+
+    <plurals name="remaining_month">
+        <item quantity="one">Queda %1$d mes</item>
+        <item quantity="other">Quedan %1$d meses</item>
+    </plurals>
+
+    <plurals name="remaining_years">
+        <item quantity="one">Queda %1$d año</item>
+        <item quantity="other">Quedan %1$d años</item>
+    </plurals>
+
+    <string name="notification_pending">Pendiente</string>
+    <string name="notification_complete">Completado</string>
+    <string name="notification_error">Cancelado</string>
+    <string name="notification_connection_error_message">Parece que no hay internet</string>
+    <string name="notification_generic_error_message">Ups, algo salió mal</string>
+    <string name="notification_cancel">Cancelar</string>
+</resources>
